@@ -1,0 +1,14 @@
+video {
+    width: calc(50% - 150px);
+    margin: 0 40px;
+    box-sizing: border-box;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 0;
+    box-shadow: #6c6c6c 5px 10px;
+}
+
+body{
+    font-family: tahoma;
+    text-align: center;
+}
