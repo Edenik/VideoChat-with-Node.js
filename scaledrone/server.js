@@ -20,18 +20,17 @@ app.get('/', (req, res) => {
 app.get('/auth/:clientId' , (req,res) => {
     const payload = {
         client: req.params.clientId,
-        chammel: CHANNEL_ID,
-        premissions: {
-            'myroom' : {
-                publish:true,
-                subscribe:true
-            },
+        channel: CHANNEL_ID,
+        permissions: {
+          '^myroom$': {
+            publish: true,
+            subscribe: true,
+          },
         },
-        exp: Math.floor((Date.now() /1000) +60*15 )
-    }
-    const token = jwt.sign(payload, CHANNEL_SECRET, {algorithm: 'HS256'});
-    console.log(token);
-    res.send(200).end(token);
+        exp: Math.floor(Date.now() / 1000) + 60 * 3 // client has to use this token within 3 minutes
+      };
+      const token = jwt.sign(payload, CHANNEL_SECRET, {algorithm: 'HS256'});
+      res.status(200).end(token);
 })
 
 app.listen(3000);
